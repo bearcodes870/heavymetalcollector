@@ -1,16 +1,5 @@
 from django.shortcuts import render
-
-class Band:
-    def __init__(self, name, genre, favealbum):
-        self.name = name
-        self.genre = genre
-        self.favealbum = favealbum
-
-bands = [
-    Band('Megadeth', 'Speed Metal', 'Rust In Peace'),
-    Band('Metallica', 'Thrash Metal', 'Ride the Lightning'),
-    Band('Pallbearer', 'Sludge Metal', 'Foundations of Burden')
-]
+from .models import Band
 
 # Create your views here.
 
@@ -23,4 +12,5 @@ def about(request):
   return render(request, 'about.html')
 
 def bands_index(request):
+  bands = Band.objects.all()
   return render(request, 'bands/index.html', { 'bands': bands })
