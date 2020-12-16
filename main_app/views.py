@@ -1,9 +1,9 @@
 from django.shortcuts import render
 
 class Band:
-    def __init__(self, name, genre, firstalbum):
-        self.name = name,
-        self.genre = genre,
+    def __init__(self, name, genre, favealbum):
+        self.name = name
+        self.genre = genre
         self.favealbum = favealbum
 
 bands = [
@@ -22,5 +22,5 @@ def home(request):
 def about(request):
   return render(request, 'about.html')
 
-def bands(request):
+def bands_index(request):
   return render(request, 'bands/index.html', { 'bands': bands })
