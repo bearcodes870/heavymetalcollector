@@ -4,6 +4,7 @@ from django.db import models
 
 class Band(models.Model):
     name = models.CharField(max_length=100)
+    hometown = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     favealbum = models.CharField(max_length=100)
 
