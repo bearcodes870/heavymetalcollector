@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
+from django.views.generic.edit import CreateView
 from .models import Band
 
 # Create your views here.
@@ -22,3 +23,8 @@ def bands_detail(request, band_id):
 
 class BandList(ListView):
   model = Band
+  template_name = 'bands/index.html'
+
+class BandCreate(CreateView):
+  model = Band
+  fields = '__all__'
