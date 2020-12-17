@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Band
 
 # Create your views here.
@@ -28,3 +28,13 @@ class BandList(ListView):
 class BandCreate(CreateView):
   model = Band
   fields = '__all__'
+  success_url = '/bands/'
+
+class BandUpdate(UpdateView):
+  model = Band
+  # Let's disallow the renaming of a cat by excluding the name field!
+  fields = ['favealbum']
+
+class BandDelete(DeleteView):
+  model = Band
+  success_url = '/bands/'

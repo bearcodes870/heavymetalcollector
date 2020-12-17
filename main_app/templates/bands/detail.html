@@ -10,6 +10,12 @@
     <p>Genre: {{ band.genre }}</p>
     <p>Your favourite album: {{ band.favealbum }}</p>
   </div>
+  <div class="card-action">
+    <a href="{% url 'bands_update' band.id %}">Edit</a>
+    <a href="{% url 'bands_delete' band.id %}">Delete</a>
+  </div>
 </div>
+
+
 
 {% endblock %}
