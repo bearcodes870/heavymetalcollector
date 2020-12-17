@@ -9,6 +9,7 @@
   <a href="{% url 'detail' band.id %}">
     <div class="card-content">
       <span class="card-title">{{ band.name }}</span>
+      <p>from {{ band.hometown }}</p>
       <p>Genre: {{ band.genre }}</p>
       <p>Favourite album by {{ band.name }}: {{ band.favealbum }}</p>
     </div>
