@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Band
+from .forms import AlbumTypeForm
 
 # Create your views here.
 
@@ -19,7 +20,19 @@ def bands_index(request):
 
 def bands_detail(request, band_id):
   band = Band.objects.get(id=band_id)
-  return render(request, 'bands/detail.html', { 'band': band })
+  albumtype_form = AlbumTypeForm()
+  return render(request, 'bands/detail.html', { 
+    'band': band,
+    'albumtype_form': albumtype_form
+  })
+
+def add_albumtype(request, band_id):
+  form = AlbumTypeForm(request.POST)
+  if form.is_valid():
+    new_albumtype = form.save(commit=False)
+    new_albumtype.band_id = band_id
+    new_albumtype.save()
+  return redirect('detail', band_id=band_id)
 
 class BandList(ListView):
   model = Band

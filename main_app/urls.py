@@ -10,5 +10,6 @@ urlpatterns = [
   path('bands/create', views.BandCreate.as_view(), name='bands_create'),
   path('bands/<int:pk>/update/', views.BandUpdate.as_view(), name='bands_update'),
   path('bands/<int:pk>/delete/', views.BandDelete.as_view(), name='bands_delete'),
+  path('bands/<int:band_id>/add_albumtype/', views.add_albumtype, name='add_albumtype'),
 ]
 

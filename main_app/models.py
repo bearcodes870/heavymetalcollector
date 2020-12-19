@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 
 # Create your models here.
 
@@ -34,3 +35,6 @@ class AlbumType(models.Model):
 
     def __str__(self):
         return f"You own this album on {self.get_albumtype_display()}"
+
+    class Meta:
+        ordering = ['-date_acquired']
