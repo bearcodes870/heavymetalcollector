@@ -23,10 +23,9 @@ class Band(models.Model):
         return reverse('detail', kwargs={'band_id': self.id})
     
 class AlbumType(models.Model):
-    date_acquired = models.DateField()
-    owned = models.BooleanField()
+    date_acquired = models.DateField('date acquired')
     albumtype = models.CharField(
-        max_length=10,
+        max_length=1,
         choices=ALBUMTYPES,
         default=ALBUMTYPES[0][0]
     )
