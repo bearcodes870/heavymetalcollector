@@ -3,6 +3,13 @@ from django.urls import reverse
 
 # Create your models here.
 
+ALBUMTYPES = (
+    ('V', 'Vinyl'),
+    ('C', 'CD'),
+    ('D', 'Digital'),
+    ('T', 'Tape')
+)
+
 class Band(models.Model):
     name = models.CharField(max_length=100)
     hometown = models.CharField(max_length=100)
@@ -14,3 +21,17 @@ class Band(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'band_id': self.id})
+    
+class AlbumType(models.Model):
+    date_acquired = models.DateField()
+    owned = models.BooleanField()
+    albumtype = models.CharField(
+        max_length=10,
+        choices=ALBUMTYPES,
+        default=ALBUMTYPES[0][0]
+    )
+
+    band = models.ForeignKey(Band, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"You own this album on {self.get_albumtype_display()}"
