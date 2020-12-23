@@ -26,6 +26,7 @@ class Band(models.Model):
     hometown = models.CharField(max_length=100)
     genre = models.CharField(max_length=100)
     favealbum = models.CharField('Favourite Album', max_length=100)
+    instruments = models.ManyToManyField(Instrument)
 
     def __str__(self):
         return self.name

@@ -6,8 +6,8 @@
 {% for band in bands %}
   <div class="card">
 
-  <a href="{% url 'detail' band.id %}">
-    <div class="card-content">
+  <a href="{% url 'detail' band.id %}" style="color:black;">
+    <div class="card-content" >
       <span class="card-title">{{ band.name }}</span>
       <p>from {{ band.hometown }}</p>
       <p>Genre: {{ band.genre }}</p>
