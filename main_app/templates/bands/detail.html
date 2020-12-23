@@ -59,7 +59,27 @@
       <h5>No Instruments Listed</h5>
     {% endif %}
   </div>
-  <!-- Available toys will come after this line -->
+    <div class="col s6">
+    <h3>Available Instruments</h3>
+    {% if instruments.count %}
+      {% for instrument in instruments.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              <span>{{ instrument.style }}</span> {{ instrument.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_instrument' band.id instrument.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn deep-orange accent-2">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{band.name}} Already Has All Instruments Listed</h5>
+    {% endif %}
 </div>
 
 <script>

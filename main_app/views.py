@@ -21,10 +21,12 @@ def bands_index(request):
 
 def bands_detail(request, band_id):
   band = Band.objects.get(id=band_id)
+  instruments_band_doesnt_have = Instrument.objects.exclude(id__in = band.instruments.all().values_list('id'))
   albumtype_form = AlbumTypeForm()
   return render(request, 'bands/detail.html', { 
     'band': band,
-    'albumtype_form': albumtype_form
+    'albumtype_form': albumtype_form,
+    'instruments': instruments_band_doesnt_have
   })
 
 def add_albumtype(request, band_id):
@@ -33,6 +35,10 @@ def add_albumtype(request, band_id):
     new_albumtype = form.save(commit=False)
     new_albumtype.band_id = band_id
     new_albumtype.save()
+  return redirect('detail', band_id=band_id)
+
+def assoc_instrument(request, band_id, instrument_id):
+  Band.objects.get(id=band_id).instruments.add(instrument_id)
   return redirect('detail', band_id=band_id)
 
 class BandList(ListView):

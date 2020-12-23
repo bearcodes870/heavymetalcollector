@@ -12,6 +12,7 @@ urlpatterns = [
   path('bands/<int:pk>/delete/', views.BandDelete.as_view(), name='bands_delete'),
   path('bands/<int:band_id>/add_albumtype/', views.add_albumtype, name='add_albumtype'),
   path('instruments/', views.InstrumentList.as_view(), name='instruments_index'),
+  path('bands/<int:band_id>/assoc_instrument/<int:instrument_id>/', views.assoc_instrument, name='assoc_instrument'),
   path('instruments/<int:pk>/', views.InstrumentDetail.as_view(), name='instruments_detail'),
   path('instruments/create/', views.InstrumentCreate.as_view(), name='instruments_create'),
   path('instruments/<int:pk>/update/', views.InstrumentUpdate.as_view(), name='instruments_update'),
