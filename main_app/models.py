@@ -11,6 +11,16 @@ ALBUMTYPES = (
     ('T', 'Tape')
 )
 
+class Instrument(models.Model):
+    name = models.CharField(max_length=50)
+    style = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('instruments_detail', kwargs={'pk': self.id})
+
 class Band(models.Model):
     name = models.CharField(max_length=100)
     hometown = models.CharField(max_length=100)

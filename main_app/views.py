@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Band
+from .models import Band, Instrument
 from .forms import AlbumTypeForm
+
 
 # Create your views here.
 
@@ -45,9 +46,26 @@ class BandCreate(CreateView):
 
 class BandUpdate(UpdateView):
   model = Band
-  # Let's disallow the renaming of a cat by excluding the name field!
   fields = ['favealbum']
 
 class BandDelete(DeleteView):
   model = Band
   success_url = '/bands/'
+
+class InstrumentList(ListView):
+  model = Instrument
+
+class InstrumentDetail(DetailView):
+  model = Instrument
+
+class InstrumentCreate(CreateView):
+  model = Instrument
+  fields = '__all__'
+
+class InstrumentUpdate(UpdateView):
+  model = Instrument
+  fields = ['name', 'style']
+
+class InstrumentDelete(DeleteView):
+  model = Instrument
+  success_url = '/instruments/'
